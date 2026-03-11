@@ -1,0 +1,19 @@
+{
+	"name": "api",
+	"version": "1.0.50",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "bun run --watch src/index.ts"
+	},
+	"dependencies": {
+		"@bogeychan/elysia-logger": "^0.1.10",
+		"@devmehq/open-graph-extractor": "^1.1.1",
+		"@elysiajs/cron": "^1.4.1",
+		"@repo/db": "workspace:*",
+		"elysia": "latest"
+	},
+	"devDependencies": {
+		"bun-types": "latest"
+	},
+	"module": "src/index.js"
+}

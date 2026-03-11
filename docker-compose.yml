@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${PG_USER:-postgres}
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-postgres}
+      POSTGRES_DB: ${PG_DBNAME:-localkeep}
+    ports:
+      - "${PG_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER:-postgres} -d ${PG_DBNAME:-localkeep}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    image: ghcr.io/${GITHUB_REPOSITORY:-jakka/localkeep}-api:latest
+    restart: always
+    ports:
+      - "4000:4000"
+    env_file: .env
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    image: ghcr.io/${GITHUB_REPOSITORY:-jakka/localkeep}-web:latest
+    restart: always
+    ports:
+      - "80:80"
+    env_file: .env
+    depends_on:
+      api:
+        condition: service_started
+
+volumes:
+  db-data:
