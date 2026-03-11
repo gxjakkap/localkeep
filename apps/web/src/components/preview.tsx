@@ -1126,30 +1126,6 @@ function BadgeExamples() {
 	)
 }
 
-function EmptyWithSpinner() {
-	return (
-		<Example title="Empty with Spinner">
-			<Empty className="w-full border">
-				<EmptyHeader>
-					<EmptyMedia variant="icon">
-						<Spinner />
-					</EmptyMedia>
-					<EmptyTitle>Processing your request</EmptyTitle>
-					<EmptyDescription>Please wait while we process your request. Do not refresh the page.</EmptyDescription>
-				</EmptyHeader>
-				<EmptyContent>
-					<div className="flex gap-2">
-						<Button size="sm">Submit</Button>
-						<Button variant="outline" size="sm">
-							Cancel
-						</Button>
-					</div>
-				</EmptyContent>
-			</Empty>
-		</Example>
-	)
-}
-
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const
 
 function SheetExample() {

@@ -124,7 +124,8 @@ export function UrlListContent() {
 					</div>
 				) : (
 					<div className="divide-y divide-border">
-						{links.map((link) => (
+		// Link type is imported, we can use it to fix implicit any error
+						{links.map((link: Link) => (
 							<div key={link.id} className="p-4 hover:bg-muted/40 transition-colors group">
 								<div className="flex items-start gap-4">
 									<div className="flex-1 min-w-0">
