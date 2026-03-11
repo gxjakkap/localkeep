@@ -9,6 +9,7 @@ RUN turbo prune web --docker
 
 FROM base AS installer
 WORKDIR /app
+RUN bun install -g turbo
 # First install the dependencies (as they change less often)
 COPY --from=builder /app/out/json/ .
 RUN bun install

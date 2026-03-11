@@ -10,6 +10,7 @@ RUN turbo prune api --docker
 
 FROM base AS installer
 WORKDIR /app
+RUN bun install -g turbo
 # Install dependencies using the pruned lockfile
 # First install the dependencies (as they change less often)
 COPY --from=builder /app/out/json/ .
@@ -23,9 +24,9 @@ FROM base AS runner
 WORKDIR /app
 
 # Don't run production as root
-RUN addgroup --system --gid 1001 bunjs
-RUN adduser --system --uid 1001 elysia
-USER elysia
+RUN addgroup --system --gid 1001 bunuser \
+  && adduser --system --uid 1001 --ingroup bunuser bunuser
+USER bunuser
 
 COPY --from=installer /app .
 
