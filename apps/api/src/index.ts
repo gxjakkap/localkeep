@@ -1,4 +1,5 @@
 import { logger } from "@bogeychan/elysia-logger"
+import cors from "@elysiajs/cors"
 import { Elysia } from "elysia"
 import { removeDeletedGroupsJob, removeDeletedLinksJob } from "@/modules/cron"
 import { groupsRoutes } from "@/modules/groups"
@@ -7,6 +8,7 @@ import { linksRoutes } from "@/modules/links"
 const PORT = parseInt(Bun.env.PORT || "4000", 10)
 
 const app = new Elysia()
+	.use(cors())
 	.use(logger())
 	.use(removeDeletedGroupsJob)
 	.use(removeDeletedLinksJob)
