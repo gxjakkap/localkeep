@@ -24,8 +24,8 @@ FROM base AS runner
 WORKDIR /app
 
 # Don't run production as root
-RUN addgroup --system --gid 1001 bunuser \
-  && adduser --system --uid 1001 --ingroup bunuser bunuser
+RUN groupadd --system --gid 1001 bunuser \
+  && useradd --system --uid 1001 --gid bunuser bunuser
 USER bunuser
 
 COPY --from=installer /app .
