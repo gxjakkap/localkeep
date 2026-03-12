@@ -8,7 +8,13 @@ import { linksRoutes } from "@/modules/links"
 const PORT = parseInt(Bun.env.PORT || "4000", 10)
 
 const app = new Elysia()
-	.use(cors())
+	.use(
+		cors({
+			origin: true,
+			methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
+			allowedHeaders: ["Content-Type", "Authorization"],
+		})
+	)
 	.use(logger())
 	.use(removeDeletedGroupsJob)
 	.use(removeDeletedLinksJob)
