@@ -136,3 +136,10 @@
 	animation: none;
 	mix-blend-mode: normal;
 }
+/* hold the new theme collapsed until the JS animation starts, otherwise it paints unclipped for a frame */
+html[data-magicui-theme-vt="active"]::view-transition-new(root) {
+	clip-path: var(--magicui-theme-vt-clip-from);
+}
+html[data-magicui-theme-vt="active"]::view-transition-group(root) {
+	animation-duration: var(--magicui-theme-toggle-vt-duration);
+}
