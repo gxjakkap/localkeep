@@ -4,8 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>web</title>
+    <title>Localkeep</title>
     <script src="/env.js"></script>
+    <!-- apply the saved theme before first paint; next-themes takes over after mount -->
+    <script>
+      try {
+        var t = localStorage.getItem("theme")
+        if (t === "dark" || (t !== "light" && matchMedia("(prefers-color-scheme: dark)").matches))
+          document.documentElement.classList.add("dark")
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
