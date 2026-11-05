@@ -6,7 +6,7 @@ export interface Link {
 	createdAt: Date
 }
 export interface TGroup {
-	name: string,
+	name: string
 	slug?: string
 }
 

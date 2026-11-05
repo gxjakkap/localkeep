@@ -1,7 +1,7 @@
-import * as dotenv from "dotenv";
-import { defineConfig } from "drizzle-kit";
+import * as dotenv from "dotenv"
+import { defineConfig } from "drizzle-kit"
 
-dotenv.config();
+dotenv.config()
 
 export default defineConfig({
 	out: "./drizzle",
@@ -14,4 +14,4 @@ export default defineConfig({
 		port: parseInt(process.env.PG_PORT || "5432", 10),
 		database: process.env.PG_DBNAME || "",
 	},
-});
+})

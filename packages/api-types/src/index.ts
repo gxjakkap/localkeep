@@ -1,1 +1,1 @@
-export type { App } from "../../../apps/api/src/index";
+export type { App } from "../../../apps/api/src/index"

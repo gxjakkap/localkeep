@@ -53,7 +53,9 @@ export function UrlListContent() {
 			<div className="flex-1 flex items-center justify-center bg-background p-6">
 				{!groupsLoading && (
 					<p className="text-muted-foreground text-center">
-						{groups.length === 0 ? "Create a group in the sidebar to start saving links." : "Choose a group to see its links."}
+						{groups.length === 0
+							? "Create a group in the sidebar to start saving links."
+							: "Choose a group to see its links."}
 					</p>
 				)}
 			</div>
