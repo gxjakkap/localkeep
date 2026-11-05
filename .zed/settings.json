@@ -1,60 +1,75 @@
 {
-  "format_on_save": "on",
-  "languages": {
-    "JavaScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome",
-        },
-      },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
-      },
-    },
-    "TypeScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome",
-        },
-      },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
-      },
-    },
-    "TSX": {
-      "formatter": {
-        "language_server": {
-          "name": "biome",
-        },
-      },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
-      },
-    },
-    "JSON": {
-      "formatter": {
-        "language_server": {
-          "name": "biome",
-        },
-      },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
-      },
-    },
-    "YAML": {
-      "formatter": {
-        "language_server": {
-          "name": "biome",
-        },
-      },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
-      },
-    },
-  },
+	"format_on_save": "on",
+	// match packages/biome-config/base.json so typed indentation matches formatted output
+	"hard_tabs": true,
+	"tab_size": 2,
+	"preferred_line_length": 120,
+	"languages": {
+		"JavaScript": {
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"TypeScript": {
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"TSX": {
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"JSON": {
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"JSONC": {
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"CSS": {
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		}
+	}
 }
