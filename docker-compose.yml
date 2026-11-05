@@ -7,8 +7,6 @@ services:
       POSTGRES_USER: ${PG_USER:-postgres}
       POSTGRES_PASSWORD: ${PG_PASSWORD:-postgres}
       POSTGRES_DB: ${PG_DBNAME:-localkeep}
-    ports:
-      - "${PG_PORT:-5432}:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
     healthcheck:
@@ -18,26 +16,28 @@ services:
       retries: 5
 
   api:
-    image: ghcr.io/${GITHUB_REPOSITORY:-jakka/localkeep}-api:latest
+    image: ghcr.io/${GITHUB_REPOSITORY:-gxjakkap/localkeep}-api:latest
     restart: always
     labels:
       - com.centurylinklabs.watchtower.enable=true
     ports:
-      - "4000:4000"
+      - "${API_PORT:-4000}:4000"
     env_file: .env
     environment:
       - NODE_ENV=production
+      - PG_HOST=db
+      - PG_PORT=5432
     depends_on:
       db:
         condition: service_healthy
 
   web:
-    image: ghcr.io/${GITHUB_REPOSITORY:-jakka/localkeep}-web:latest
+    image: ghcr.io/${GITHUB_REPOSITORY:-gxjakkap/localkeep}-web:latest
     restart: always
     labels:
       - com.centurylinklabs.watchtower.enable=true
     ports:
-      - "80:80"
+      - "${WEB_PORT:-80}:80"
     env_file: .env
     depends_on:
       api:
