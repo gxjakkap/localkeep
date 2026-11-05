@@ -18,7 +18,7 @@ RUN bun install
 COPY --from=builder /app/out/full/ .
 RUN turbo run build --filter=web
 
-FROM nginx:alpine as runner
+FROM nginx:alpine-slim AS runner
 WORKDIR /usr/share/nginx/html
 
 # Clean default nginx html
