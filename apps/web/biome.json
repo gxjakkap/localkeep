@@ -1,8 +1,13 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
 	"root": false,
-	"extends": ["../packages/biome-config/base.json", "../packages/biome-config/next.json"],
+	"extends": ["../../packages/biome-config/base.json", "../../packages/biome-config/react-internal.json"],
 	"files": {
 		"includes": ["!!**/routeTree.gen.ts"]
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
 	}
 }
