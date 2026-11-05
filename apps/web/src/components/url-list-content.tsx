@@ -25,6 +25,17 @@ const hostname = (url: string) => {
 	}
 }
 
+// titles fall back to the percent-encoded url when the page has no og:title
+const decode = (s: string) => {
+	try {
+		return decodeURI(s)
+	} catch {
+		return s
+	}
+}
+
+const label = (link: Link) => (link.title ? decode(link.title) : hostname(link.url))
+
 export function UrlListContent() {
 	const { groups, isLoading: groupsLoading, getSelectedGroup, addLinkToGroup, deleteLinkFromGroup } = useApp()
 	const selectedGroup = getSelectedGroup()
@@ -169,7 +180,7 @@ export function UrlListContent() {
 											target="_blank"
 											rel="noopener noreferrer"
 											className="inline-flex max-w-full items-center gap-2 mb-1 font-semibold text-foreground hover:underline rounded-sm">
-											<span className="truncate">{link.title || hostname(link.url)}</span>
+											<span className="truncate">{label(link)}</span>
 											<ExternalLink size={14} className="shrink-0 text-muted-foreground" aria-hidden />
 											<span className="sr-only">(opens in a new tab)</span>
 										</a>
@@ -181,7 +192,7 @@ export function UrlListContent() {
 											variant="ghost"
 											size="icon"
 											onClick={() => handleCopyUrl(link.url)}
-											aria-label={`Copy link to ${link.title || hostname(link.url)}`}
+											aria-label={`Copy link to ${label(link)}`}
 											title="Copy Link">
 											{copied === link.url ? <Check aria-hidden /> : <Copy aria-hidden />}
 										</Button>
@@ -189,7 +200,7 @@ export function UrlListContent() {
 											variant="ghost"
 											size="icon"
 											onClick={() => setPendingDelete(link)}
-											aria-label={`Delete ${link.title || hostname(link.url)}`}
+											aria-label={`Delete ${label(link)}`}
 											title="Delete Link"
 											className="hover:bg-destructive/10 hover:text-destructive">
 											<Trash2 aria-hidden />
@@ -205,7 +216,7 @@ export function UrlListContent() {
 			<Dialog open={pendingDelete !== null} onOpenChange={(open) => !open && setPendingDelete(null)}>
 				<DialogContent>
 					<DialogHeader>
-						<DialogTitle>Delete “{pendingDelete && (pendingDelete.title || hostname(pendingDelete.url))}”?</DialogTitle>
+						<DialogTitle>Delete “{pendingDelete && label(pendingDelete)}”?</DialogTitle>
 						<DialogDescription>This can’t be undone.</DialogDescription>
 					</DialogHeader>
 					<DialogFooter>
