@@ -1,5 +1,5 @@
 import { db } from "@repo/db"
-import { and, between, eq, isNotNull, isNull } from "@repo/db/orm"
+import { and, between, desc, eq, isNotNull, isNull } from "@repo/db/orm"
 import { group, link } from "@repo/db/schema"
 import { SOFT_DELETE_KEEP_DURATION } from "@/utils/const"
 
@@ -47,7 +47,8 @@ export const getLinksByGroupSlug = async (slug: string) => {
 		})
 		.from(link)
 		.innerJoin(group, eq(link.groupId, group.id))
-		.where(and(eq(group.slug, slug), isNull(group.deleted_at)))
+		.where(and(eq(group.slug, slug), isNull(group.deleted_at), isNull(link.deleted_at)))
+		.orderBy(desc(link.created_at))
 
 	if (links.length === 0) {
 		const exists = await db.select({ id: group.id }).from(group).where(eq(group.slug, slug))
