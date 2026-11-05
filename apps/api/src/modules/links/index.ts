@@ -29,6 +29,10 @@ export const linksRoutes = new Elysia({ prefix: "/links" })
 			}
 		},
 		{
+			// percent-encode non-ASCII (e.g. Thai) so it passes the "uri" format check
+			transform({ body }) {
+				body.url = URL.parse(body.url)?.href ?? body.url
+			},
 			body: LinksModel.linkAddBody,
 			response: {
 				200: LinksModel.linkAddResponse,
