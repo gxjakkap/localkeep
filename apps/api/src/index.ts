@@ -21,7 +21,7 @@ const app = new Elysia()
 	.use(groupsRoutes)
 	.use(linksRoutes)
 	.get("/", () => "Alive")
-	.listen(PORT)
+	.listen({ port: PORT, hostname: Bun.env.HOST || "0.0.0.0" })
 
 console.log(`API is running at ${app.server?.hostname}:${app.server?.port}`)
 

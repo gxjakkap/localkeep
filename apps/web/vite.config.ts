@@ -7,7 +7,7 @@ import { defineConfig } from "vite"
 // https://vite.dev/config/
 export default defineConfig({
 	envDir: "../../",
-	server: {},
+	server: { allowedHosts: [".ts.net"] },
 	plugins: [
 		tanstackRouter({
 			target: "react",
