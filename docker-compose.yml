@@ -20,6 +20,8 @@ services:
   api:
     image: ghcr.io/${GITHUB_REPOSITORY:-jakka/localkeep}-api:latest
     restart: always
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     ports:
       - "4000:4000"
     env_file: .env
@@ -32,6 +34,8 @@ services:
   web:
     image: ghcr.io/${GITHUB_REPOSITORY:-jakka/localkeep}-web:latest
     restart: always
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     ports:
       - "80:80"
     env_file: .env
